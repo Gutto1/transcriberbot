@@ -1,0 +1,36 @@
+{
+  "name": "transcriberbot",
+  "version": "1.0.0",
+  "description": "bot do discord para transcrição de fala para texto",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gutto1/transcriberbot.git"
+  },
+  "keywords": [
+    "transcriber",
+    "speech-to-text",
+    "accessibility",
+    "acessibilidade",
+    "transcrição"
+  ],
+  "author": "Augusto Oliveira Santana (@gutto_0)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Gutto1/transcriberbot/issues"
+  },
+  "homepage": "https://github.com/Gutto1/transcriberbot#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.9.0",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "@discordjs/voice": "^0.7.5",
+    "discord-api-types": "^0.25.2",
+    "discord.js": "^13.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.5.0"
+  }
+}
