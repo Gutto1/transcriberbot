@@ -21,6 +21,7 @@ const joinChannel = async (command, client) => {
 
     try {
       await entersState(connection, VoiceConnectionStatus.Ready, 20e3)
+      command.reply('Conectado!')
       const rec = connection.receiver
 
       rec.speaking.on('start', async (userId) => {
@@ -69,7 +70,6 @@ module.exports = {
     switch (command.content.toLowerCase()) {
       case '!join':
         joinChannel(command, client)
-        command.reply('Conectado!')
         break
       case '!leave':
         leaveChannel(command)
