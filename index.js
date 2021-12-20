@@ -1,34 +1,24 @@
 const { Client, Intents, Collection } = require('discord.js')
 const { discordToken } = require('./config.json')
 const fs = require('fs')
+const commands = require('./commands/commands')
 
 // config inicial do bot
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] })
-client.commands = new Collection()
-const commandFiles = fs.readdirSync('./commands').filter((file) => file.endsWith('.js'))
-
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`)
-  client.commands.set(command.data.name, command)
-}
+const client = new Client({
+  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES],
+})
 
 client.once('ready', () => {
   console.log('Ready!')
 })
 
-// Interação com comandos
-client.on('interactionCreate', async (interaction) => {
-  if (!interaction.isCommand()) return
+// ler msgs para pegar os comandos
+client.on('messageCreate', (msg) => {
+  if (msg.author.bot) return //ignora mensagem de bots
 
-  const command = client.commands.get(interaction.commandName)
-
-  if (!command) return
-
-  try {
-    await command.execute(interaction)
-  } catch (err) {
-    console.error(err)
-    await interaction.reply({ content: 'Erro ao executar o comando', ephemeral: true })
+  //se for comando joga pra função que lida com comandos
+  if (msg.content.startsWith('!')) {
+    commands.handleCommands(msg)
   }
 })
 
