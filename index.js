@@ -1,7 +1,7 @@
 const { Client, Intents, Collection } = require('discord.js')
 const { discordToken } = require('./config.json')
 const fs = require('fs')
-const commands = require('./commands/commands')
+const commands = require('./services/commands')
 
 // config inicial do bot
 const client = new Client({
@@ -18,7 +18,7 @@ client.on('messageCreate', (msg) => {
 
   //se for comando joga pra função que lida com comandos
   if (msg.content.startsWith('!')) {
-    commands.handleCommands(msg)
+    commands.handleCommands(msg, client)
   }
 })
 
